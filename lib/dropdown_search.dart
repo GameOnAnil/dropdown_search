@@ -1,6 +1,7 @@
 library dropdown_search;
 
 import 'dart:async';
+
 import 'package:dropdown_search/src/properties/dropdown_props.dart';
 import 'package:dropdown_search/src/properties/infinite_scroll_props.dart';
 import 'package:dropdown_search/src/properties/scroll_props.dart';
@@ -13,25 +14,25 @@ import 'package:flutter/material.dart';
 import 'src/properties/dropdown_suffix_props.dart';
 import 'src/properties/popup_props.dart';
 import 'src/widgets/custom_scroll_view.dart';
-import 'src/widgets/popup_menu.dart';
 import 'src/widgets/dropdown_search_popup.dart';
+import 'src/widgets/popup_menu.dart';
 
 export 'src/properties/bottom_sheet_props.dart';
 export 'src/properties/clear_button_props.dart';
 export 'src/properties/dialog_props.dart';
 export 'src/properties/dropdown_props.dart';
-export 'src/properties/suggested_item_props.dart';
+export 'src/properties/dropdown_suffix_props.dart';
 export 'src/properties/icon_button_props.dart';
+export 'src/properties/infinite_scroll_props.dart';
 export 'src/properties/list_view_props.dart';
 export 'src/properties/menu_props.dart';
 export 'src/properties/modal_bottom_sheet_props.dart';
 export 'src/properties/popup_props.dart';
-export 'src/properties/scrollbar_props.dart';
-export 'src/properties/text_field_props.dart';
-export 'src/properties/infinite_scroll_props.dart';
 export 'src/properties/scroll_props.dart';
+export 'src/properties/scrollbar_props.dart';
+export 'src/properties/suggested_item_props.dart';
+export 'src/properties/text_field_props.dart';
 export 'src/widgets/dropdown_search_popup.dart';
-export 'src/properties/dropdown_suffix_props.dart';
 
 typedef DropdownSearchOnFind<T> = FutureOr<List<T>> Function(
     String filter, LoadProps? loadProps);
@@ -647,10 +648,12 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
             widget.popupProps.modalBottomSheetProps.animation,
         constraints: widget.popupProps.modalBottomSheetProps.constraints,
         builder: (ctx) {
-          return Container(
-            padding:
-                EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
-            child: _popupWidgetInstance(),
+          return SafeArea(
+            child: Container(
+              padding:
+                  EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+              child: _popupWidgetInstance(),
+            ),
           );
         });
   }
