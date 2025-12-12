@@ -29,9 +29,11 @@ Future openMaterialModalBottomSheet(
     constraints: props.constraints,
     routeSettings: props.routeSettings,
     builder: (ctx) {
-      return Container(
-        margin: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
-        child: content,
+      return SafeArea(
+        child: Container(
+          margin: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+          child: content,
+        ),
       );
     },
   );
@@ -75,21 +77,23 @@ Future openCupertinoModalBottomSheet(
     semanticsDismissible: props.semanticsDismissible,
     routeSettings: props.routeSettings,
     builder: (ctx) {
-      return Container(
-        //to move layout up if keyboard is showed up
-        margin: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
-        child: CupertinoActionSheet(
-          title: props.title,
-          actionScrollController: props.actionScrollController,
-          actions: props.actions ?? defaultActions,
-          cancelButton: props.cancelButton ??
-              CupertinoActionSheetAction(
-                isDestructiveAction: true,
-                onPressed: () => Navigator.pop(context),
-                child: Text('Cancel'),
-              ),
-          messageScrollController: props.messageScrollController,
-          message: content,
+      return SafeArea(
+        child: Container(
+          //to move layout up if keyboard is showed up
+          margin: EdgeInsets.only(bottom: MediaQuery.of(ctx).viewInsets.bottom),
+          child: CupertinoActionSheet(
+            title: props.title,
+            actionScrollController: props.actionScrollController,
+            actions: props.actions ?? defaultActions,
+            cancelButton: props.cancelButton ??
+                CupertinoActionSheetAction(
+                  isDestructiveAction: true,
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Cancel'),
+                ),
+            messageScrollController: props.messageScrollController,
+            message: content,
+          ),
         ),
       );
     },
